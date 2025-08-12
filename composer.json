@@ -1,0 +1,43 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "yiisoft/yii2": "^2.0.47",
+        "idleberg/vite-manifest": "^0.9.0",
+        "yiisoft/yii2-debug": "^2.1.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.16.0",
+        "phpstan/phpstan": "^1.10.11"
+    },
+    "license": "MIT",
+    "scripts": {
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#fb7185,#fdba74\" \"composer serve\" \"npm run dev\" --names=server,vite"
+        ],
+
+        "serve" : "php yii serve --port=8888",
+        "kill" : "killall -9 php8.1",
+        "phpstan": "vendor/bin/phpstan -v",
+        "phpcsfixer": "vendor/bin/php-cs-fixer fix",
+        "vercel": [
+          "npm ci && npm run build"
+        ]
+
+    },
+    "config": {
+        "fxp-asset": {
+            "enabled": false
+        },
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true,
+            "luyadev/luya-composer": true
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}

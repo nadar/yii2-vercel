@@ -1,0 +1,9 @@
+parameters:
+  level: 9
+  treatPhpDocTypesAsCertain: false
+  paths:
+    - config
+    - controllers
+  bootstrapFiles:
+    - vendor/yiisoft/yii2/Yii.php
+  tmpDir: .tmp

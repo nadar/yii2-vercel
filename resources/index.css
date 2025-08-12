@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Tell Tailwind where to scan for class usage (v4) */
+@source "./**/*.html";
+@source "../views/**/*.php";
+@source "../widgets/**/*.php";

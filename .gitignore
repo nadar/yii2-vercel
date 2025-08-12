@@ -1,0 +1,12 @@
+vendor
+node_modules
+/package-lock.json
+/runtime
+.env
+.php-cs-fixer.cache
+.tmp
+# App
+/dist
+
+# Vercel
+.vercel
