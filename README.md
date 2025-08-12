@@ -1,6 +1,4 @@
-# Flyo Nitro Yii2 Example
-
-A Flyo, Yii2, Vite, Tailwind and Bref (Servless) Kickstarter Project.
+# Yii2 on Vercel
 
 ## Running
 
@@ -11,10 +9,5 @@ vite & tailwind:
 
 server:
 
-1. `composer install`
-2. `composer serve`
-3. visit `localhost:8888`
-
-## Documentation
-
-[Read More in the Docs](https://dev.flyo.cloud/nitro/php)
+1. `composer dev`
+2. visit localhost:8888
