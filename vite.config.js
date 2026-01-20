@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 import liveReload from 'vite-plugin-live-reload'
+import manifestSRI from 'vite-plugin-manifest-sri'
 export default defineConfig({
     base: '/',
     plugins: [
         tailwindcss(),
-        liveReload(['/(modules|config|views|widgets)/**/*.php'])
+        liveReload(['/(modules|config|views|widgets)/**/*.php']),
+        manifestSRI()
     ],
     build: {
         // generate manifest.json in outDir
