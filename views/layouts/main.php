@@ -30,30 +30,20 @@ if (!YII_ENV_PROD) {
     <?php else: 
         // Use basePath to construct the correct path to web directory
         $manifestPath = Yii::getAlias('@app/web/resources/dist/manifest.json');
-        $vm = new Manifest($manifestPath, Yii::getAlias('@web/resources/dist/'));
-        $entrypoint = $vm->getEntrypoint("resources/main.js", false);
-        
+        $uri = Url::base(true) . '/resources/dist/';
+        $vm = new Manifest($manifestPath, $uri, ':manifest:');
+        $entrypoint = $vm->getEntrypoint('main.js');
         if ($entrypoint) {
-            ["url" => $url, "hash" => $hash] = $entrypoint;
-            if ($hash) {
-                echo "<script type='module' src='$url' crossorigin integrity='$hash'></script>" . PHP_EOL;
-            } else {
-                echo "<script type='module' src='$url' crossorigin></script>" . PHP_EOL;
-            }
+            ['url' => $url, 'hash' => $hash] = $entrypoint;
+            echo "<script type=\"module\" src=\"$url\" crossorigin integrity=\"$hash\"></script>" . PHP_EOL;
         }
-        
-        foreach ($vm->getImports("resources/main.js", false) as $import) {
-            ["url" => $url] = $import;
-            echo "<link rel='modulepreload' href='$url' />" . PHP_EOL;
+        foreach ($vm->getImports('main.js') as $import) {
+            ['url' => $url, 'hash' => $hash] = $import;
+            echo "<link rel=\"modulepreload\" href=\"$url\" integrity=\"$hash\"  />" . PHP_EOL;
         }
-        
-        foreach ($vm->getStyles("resources/main.js", false) as $style) {
-            ["url" => $url, "hash" => $hash] = $style;
-            if ($hash) {
-                echo "<link rel='stylesheet' href='$url' crossorigin integrity='$hash' />" . PHP_EOL;
-            } else {
-                echo "<link rel='stylesheet' href='$url' crossorigin />" . PHP_EOL;
-            }
+        foreach ($vm->getStyles('main.css') as $style) {
+            ['url' => $url, 'hash' => $hash] = $style;
+            echo "<link rel=\"stylesheet\" href=\"$url\" crossorigin integrity=\"$hash\" />" . PHP_EOL;
         }
     endif;
     ?>
